@@ -6,11 +6,13 @@ help:
 	# -----------------------------------------------------------------------------
 	# Targets:
 	#
-	# 	shell 	:	launch service in a shell
-	# 	build 	:	build service locally
-	# 	start 	:	start service locally
-	# 	stop  	:	stop service locally
-	# 	package	:	create tar of service locally
+	# 	shell 	:	launch service '{{APPNAME}}' in a shell
+	# 	clean 	:	clean service '{{APPNAME}}'
+	# 	build 	:	build service '{{APPNAME}}'
+	# 	start 	:	start service '{{APPNAME}}'
+	# 	stop  	:	stop service '{{APPNAME}}'
+	# 	release	:	release service '{{APPNAME}}'
+	# 	package	:	tar service '{{APPNAME}}'
 	#
 	# end.
 	# -----------------------------------------------------------------------------
@@ -22,22 +24,30 @@ help:
 shell:  
 	rebar3 shell ${APP} ${ARGS}
 
+.PHONY: clean
+clean:  
+	rebar3 clean
+
 .PHONY: build
 build:  
-	rebar3 do clean, compile, escriptize, eunit
+	rebar3 do clean, compile, eunit
 
 .PHONY: release
 release:  
-	rebar3 as prod do release 
+	# dev release
+	rebar3 release 
 
 .PHONY: start
 start: release 
+	# dev release
 	./_build/default/rel/${APP}/bin/${APP} start
 
 .PHONY: stop
 stop: 
+	# dev release
 	./_build/default/rel/${APP}/bin/${APP} stop
 
 .PHONY: package
 package: 
+	# prod release
 	rebar3 as prod tar

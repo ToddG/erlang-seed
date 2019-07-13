@@ -21,8 +21,10 @@ gen:
 	APPNAME=$(APPNAME) ./tools/mo templates/Dockerfile > $(TARGETDIR)/$(PROJECTNAME)/Dockerfile
 	cd  $(TARGETDIR)/$(PROJECTNAME) && rebar3 new release $(APPNAME)
 	APPNAME=$(APPNAME) ./tools/mo templates/AppMakefile > $(TARGETDIR)/$(PROJECTNAME)/$(APPNAME)/Makefile
-	cd  $(TARGETDIR)/temp && git clone http://github.com/toddg/monitor && cd monitor && $(MAKE) package
-	cd $(TARGETDIR)/$(PROJECTNAME) && tar -zxvf ../temp/monitor/monitor.tgz 
+	cd  $(TARGETDIR)/temp && git clone http://github.com/toddg/monitor && cd monitor && git checkout tags/v0.1.0 && $(MAKE) package
+	cd $(TARGETDIR)/$(PROJECTNAME) && tar -zxvf ../temp/monitor/monitor.tgz
+	APPNAME=$(APPNAME) ./tools/mo templates/docker-compose.yml > $(TARGETDIR)/$(PROJECTNAME)/monitor/docker-compose.yml
+	cd $(TARGETDIR)/$(PROJECTNAME) && $(MAKE) selftest
 
 
 .PHONY: clean

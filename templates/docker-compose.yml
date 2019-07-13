@@ -34,7 +34,8 @@ services:
 # application
   {{APPNAME}}:
       image: localtag/{{APPNAME}}
-      ports: "4444:4444"
+      ports: 
+        - 4444:4444
 
 # for persistent data
 volumes:
