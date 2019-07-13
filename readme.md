@@ -22,6 +22,36 @@ Seed application template for erlang application with monitoring, prometheus and
 This will create the application named 'foo' and generate all the scaffolding
 for docker, monitoring, etc. and spin up the containers.
 
+Take a look at the app metrics being served by mprom:
+
+    $ curl http://localhost:4444/metrics
+
+Then take a look at the prometheus server that is aggregating those metrics. 
+It's easier to see this in a browser at: 
+
+    http://localhost:9090/targets.
+
+Finally, take a look at the grafana charts at: 
+
+    http://localhost:3000.
+
+Remember the grafana login is 'admin/admin'.
+
+To shutdown the cluster:
+
+    $ cd proj/foo
+    $ make cstop
+
+To restart the cluster:
+
+    $ cd proj/foo
+    $ make cstart
+
+To tail the cluster logs:
+
+    $ cd proj/foo
+    $ make tail
+
 ## resources
 
 ### monitoring
