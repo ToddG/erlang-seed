@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  grafana:
+    image: grafana/grafana:6.2.4
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./storage/grafana:/var/lib/grafana
+    user: ${GRAFANA_USER_ID}
+
+  prometheus:
+    image: prom/prometheus:v2.10.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${CURRENT_DIRECTORY}/config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+
+  node-exporter:
+    image: prom/node-exporter:v0.18.1
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    ports:
+      - '9100:9100'
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+    ports:
+      - 9100:9100
+
+# application
+  {{APPNAME}}:
+      image: localtag/{{APPNAME}}
+      ports: "4444:4444"
+
+# for persistent data
+volumes:
+  prometheus_data:

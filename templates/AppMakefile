@@ -1,0 +1,43 @@
+APP:={{APPNAME}}
+ARGS=""
+
+.PHONY: help
+help:
+	# -----------------------------------------------------------------------------
+	# Targets:
+	#
+	# 	shell 	:	launch service in a shell
+	# 	build 	:	build service locally
+	# 	start 	:	start service locally
+	# 	stop  	:	stop service locally
+	# 	package	:	create tar of service locally
+	#
+	# end.
+	# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# COMMANDS
+# -----------------------------------------------------------------------------
+.PHONY: shell
+shell:  
+	rebar3 shell ${APP} ${ARGS}
+
+.PHONY: build
+build:  
+	rebar3 do clean, compile, escriptize, eunit
+
+.PHONY: release
+release:  
+	rebar3 as prod do release 
+
+.PHONY: start
+start: release 
+	./_build/default/rel/${APP}/bin/${APP} start
+
+.PHONY: stop
+stop: 
+	./_build/default/rel/${APP}/bin/${APP} stop
+
+.PHONY: package
+package: 
+	rebar3 as prod tar

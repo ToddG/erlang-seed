@@ -52,11 +52,6 @@ stop:
 package: 
 	cd ${APP} && $(MAKE) package
 
-# Add a control plane (cplane) escript if useful
-#.PHONY: cplane
-#cplane: build 
-#	cd ${APP} && $(MAKE) cplane ${ARGS}
-
 # -----------------------------------------------------------------------------
 #  CONTAINER COMMANDS
 # -----------------------------------------------------------------------------
