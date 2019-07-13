@@ -7,8 +7,9 @@ help:
 	# -----------------------------------------------------------------------------
 	# Targets:
 	#
-	#	help 						: show this message
-	#	gen PROJECTNAME=proj APPNAME=foo TARGETDIR=out	: generate project
+	#	clean 					: rm -rf ./out
+	#	help 					: show this message
+	#	gen PROJECTNAME=proj APPNAME=foo	: generate project in ./out/PROJECTNAME
 	#
 	# end.
 	# -----------------------------------------------------------------------------

@@ -1,13 +1,40 @@
 # erlang-seed
-Seed application template for erlang application with monitoring, prometheus and grafana
+Seed application template for erlang application with monitoring, prometheus and grafana.
 
+## usage
 
-## sources
+    $ make help
+    # -----------------------------------------------------------------------------
+    # Targets:
+    #
+    #	clean 					: rm -rf ./out
+    #	help 					: show this message
+    #	gen PROJECTNAME=proj APPNAME=foo	: generate project in ./out/PROJECTNAME
+    #
+    # end.
+    # -----------------------------------------------------------------------------
 
-### mo
+### example
 
-    $ mkdir tools
-    $ cd tools/
-    $ curl -sSL https://git.io/get-mo -o mo
-    $ chmod +x mo
+    $ make clean
+    $ make gen
 
+This will create the application named 'foo' and generate all the scaffolding
+for docker, monitoring, etc. and spin up the containers.
+
+## resources
+
+### monitoring
+
+For details on the monitoring and docker infrastructure:
+* http://zwrob.com/posts 
+* https://github.com/ToddG/monitor/releases/tag/v0.1.0
+
+For details on the erlang app that provides prometheus metrics:
+* github.com/toddg/mprom 
+
+### erlang/rebar3
+* https://www.rebar3.org/docs/getting-started
+
+### templates
+* https://github.com/tests-always-included/mo
