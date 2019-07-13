@@ -29,11 +29,11 @@ Take a look at the app metrics being served by mprom:
 Then take a look at the prometheus server that is aggregating those metrics. 
 It's easier to see this in a browser at: 
 
-    http://localhost:9090/targets.
+    http://localhost:9090/targets
 
 Finally, take a look at the grafana charts at: 
 
-    http://localhost:3000.
+    http://localhost:3000
 
 Remember the grafana login is 'admin/admin'.
 
@@ -61,7 +61,7 @@ For details on the monitoring and docker infrastructure:
 * https://github.com/ToddG/monitor/releases/tag/v0.1.0
 
 For details on the erlang app that provides prometheus metrics:
-* github.com/toddg/mprom 
+* https://github.com/toddg/mprom 
 
 ### erlang/rebar3
 * https://www.rebar3.org/docs/getting-started
