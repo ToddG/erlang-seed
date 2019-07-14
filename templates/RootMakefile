@@ -46,7 +46,7 @@ start:
 
 .PHONY: stop
 stop: 
-	-cd ${APP} && $(MAKE) stop
+	cd ${APP} && $(MAKE) stop
 
 .PHONY: package
 package: 
@@ -80,4 +80,4 @@ clog:
 # -----------------------------------------------------------------------------
 
 .PHONY: selftest
-selftest: build release start stop cbuild cstart cstop
+selftest: build release start cbuild stop cstart cstop
