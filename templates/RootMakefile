@@ -30,7 +30,7 @@ help:
 # -----------------------------------------------------------------------------
 .PHONY: shell
 shell:  
-	cd ${APP} && $(MAKE) shell ${ARGS}
+	cd ${APP} && $(MAKE) shell ARGS=${ARGS}
 
 .PHONY: build
 build:  
@@ -67,9 +67,6 @@ cstop:
 .PHONY: cbuild
 cbuild:  
 	docker build -t localtag/${APP} .
-
-.PHONY: tail
-tail: clog
 
 .PHONY: clog
 clog: 
